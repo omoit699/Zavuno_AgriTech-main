@@ -1,0 +1,11 @@
+HEAD is now at e02d39d add
+warning: failed to remove final_purge_output.txt: Invalid argument
+Removing Zavuno_Complete_Platform/public/
+Removing final_purge.py
+Removing run_final_purge.bat
+[1/7] Removing git filter-branch temporary directories...
+[1/7] DONE
+[2/7] Hard reset to HEAD...
+[2/7] DONE
+[3/7] Removing untracked files...
+[3/7] ERROR: Command '['git', 'clean', '-ffd']' returned non-zero exit status 1.

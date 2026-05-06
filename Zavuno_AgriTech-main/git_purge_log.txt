@@ -1,0 +1,25 @@
+=== GIT VSIX PURGE START ===
+
+[1] Removing filter-branch artifacts...
+
+[2] Hard reset HEAD...
+  OK
+
+[3] Cleaning untracked files...
+  OK (ignoring file lock warnings)
+
+[4] Running git filter-branch...
+  OK - filter-branch completed
+  Rewrote 30 commits
+
+[5] Expiring reflog...
+  OK
+
+[6] Running git gc...
+  OK
+
+[7] Verifying VSIX removal...
+  VSIX objects found: 0
+  SUCCESS: All VSIX removed from history!
+
+=== GIT VSIX PURGE COMPLETE ===

@@ -1,0 +1,20 @@
+WARNING: git-filter-branch has a glut of gotchas generating mangled history
+	 rewrites.  Hit Ctrl-C before proceeding to abort, then use an
+	 alternative filtering tool such as 'git filter-repo'
+	 (https://github.com/newren/git-filter-repo/) instead.  See the
+	 filter-branch manual page for more details; to squelch this warning,
+	 set FILTER_BRANCH_SQUELCH_WARNING=1.
+Proceeding with filter-branch...
+
+.vscode/extensions.json: needs merge
+.vscode/launch.json: needs merge
+Zavuno_Complete_Platform/node_modules/.package-lock.json: needs merge
+Zavuno_Complete_Platform/node_modules/.vite/deps/_metadata.json: needs merge
+Zavuno_Complete_Platform/node_modules/.vite/deps/react-dom_client.js: needs merge
+Zavuno_Complete_Platform/node_modules/.vite/deps/react-dom_client.js.map: needs merge
+Zavuno_Complete_Platform/package-lock.json: needs merge
+Zavuno_Complete_Platform/src/App.jsx: needs merge
+Cannot rewrite branches: You have unstaged changes.
+Additionally, your index contains uncommitted changes.
+[1/4] Running git filter-branch...
+[1/4] ERROR: Command '['git', 'filter-branch', '--force', '--index-filter', 'git rm --cached --ignore-unmatch Zavuno_Complete_Platform/src/*.vsix', '--prune-empty', '--tag-name-filter', 'cat', '--', '--all']' returned non-zero exit status 1.
