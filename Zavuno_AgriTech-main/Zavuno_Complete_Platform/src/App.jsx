@@ -15,18 +15,12 @@ export default function ZavunoPlatform() {
   const [weatherData, setWeatherData] = useState(null);
   const [aiQuery, setAiQuery] = useState("");
   const [aiAdvice, setAiAdvice] = useState("");
-<<<<<<< HEAD
-<<<<<<< HEAD
   const [produceName, setProduceName] = useState("");
   const [produceQuantity, setProduceQuantity] = useState("");
   const [producePrice, setProducePrice] = useState("");
   const [produceDescription, setProduceDescription] = useState("");
   const [produceImage, setProduceImage] = useState("");
   const [produceListings, setProduceListings] = useState([]);
-=======
->>>>>>> 6bb8cce5db1e3d6e3050ce7bf724dc65f7234fe7
-=======
->>>>>>> 6bb8cce5db1e3d6e3050ce7bf724dc65f7234fe7
 
   const handleFarmerSignIn = () => {
     alert(`Farmer Sign In - Email: ${farmerEmail}`);
@@ -101,8 +95,6 @@ export default function ZavunoPlatform() {
     setAiAdvice(advice);
   };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   const handleUploadProduce = () => {
     if (!produceName.trim() || !produceQuantity || !producePrice) {
       alert("Please fill in all required fields (Name, Quantity, Price)");
@@ -129,11 +121,6 @@ export default function ZavunoPlatform() {
     setProduceImage("");
     alert("✅ Your produce has been listed successfully!");
   };
-
-=======
->>>>>>> 6bb8cce5db1e3d6e3050ce7bf724dc65f7234fe7
-=======
->>>>>>> 6bb8cce5db1e3d6e3050ce7bf724dc65f7234fe7
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
       <header className="bg-green-800 text-white shadow-lg">
