@@ -252,8 +252,6 @@ export default function ZavunoPlatform() {
         </div>
       </section>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
       <section className="py-20 bg-yellow-50">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center text-yellow-800 mb-4">
@@ -407,10 +405,6 @@ export default function ZavunoPlatform() {
         </div>
       </section>
 
-=======
->>>>>>> 6bb8cce5db1e3d6e3050ce7bf724dc65f7234fe7
-=======
->>>>>>> 6bb8cce5db1e3d6e3050ce7bf724dc65f7234fe7
       <section className="py-20 bg-green-50">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center text-green-800 mb-4">
