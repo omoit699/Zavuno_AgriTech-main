@@ -61,7 +61,7 @@ With our AI agricultural advice, weather forecasting, fair-trade practices, and 
 
 ---
 
-## Features
+## 🚀 Features
 
 ✅ **Farmer, Buyer & Transporter Sign In** - Secure access for all stakeholders
 ✅ **Mobile Money Integration** - Easy payments via MTN & Airtel
@@ -73,17 +73,115 @@ With our AI agricultural advice, weather forecasting, fair-trade practices, and 
 
 ---
 
-## How to Get Started
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18 with Vite
+- **Styling**: Tailwind CSS
+- **Deployment**: GitHub Pages
+- **Build Tool**: Vite
+- **Package Manager**: npm
+
+---
+
+## 📋 Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+---
+
+## 🚀 Getting Started
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
-# Install dependencies
-npm install
+git clone https://github.com/omoit699/Zavuno_AgriTech-main.git
+cd Zavuno_AgriTech-main/Zavuno_Complete_Platform
+```
 
-# Start the development server
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
 npm run dev
 ```
 
-Visit `http://localhost:5173/` in your browser.
+4. Open your browser and visit `http://localhost:5173/`
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+---
+
+## 🌐 Deployment
+
+The application is deployed on GitHub Pages. To deploy updates:
+
+```bash
+npm run deploy
+```
+
+This will build the project and publish it to the `gh-pages` branch.
+
+**Live Site**: [https://omoit699.github.io/Zavuno_AgriTech-main/](https://omoit699.github.io/Zavuno_AgriTech-main/)
+
+---
+
+## 📱 Usage
+
+1. **Sign In**: Choose your role (Farmer, Buyer, or Transporter) and sign in
+2. **Marketplace**: Farmers can upload produce, buyers can browse listings
+3. **Weather**: Check weather forecasts for your location
+4. **AI Advice**: Get expert agricultural recommendations
+5. **Payments**: Use mobile money for secure transactions
+6. **Support**: Contact us via WhatsApp for assistance
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Here's how you can help:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+Please ensure your code follows our coding standards and includes appropriate tests.
+
+---
+
+## 📞 Contact & Support
+
+- **Email**: lawrenceomoit66@gmail.com
+- **Phone**: +256790206354 / +256794162036
+- **WhatsApp**: +256790206354
+- **Location**: Nsambya, Kampala, Uganda
+
+For technical support or questions, reach out to us via WhatsApp or email.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -98,6 +196,8 @@ We are committed to:
 - **Sustainability**: Helping you farm better for today and tomorrow
 
 ---
+
+_Built with ❤️ for African farmers by the Zavuno team._
 
 ## Get in Touch
 
