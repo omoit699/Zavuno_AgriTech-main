@@ -327,115 +327,118 @@ export default function ZavunoPlatform() {
   }, []);
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
-      <header className="gradient-bg text-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+      <header className="gradient-bg text-white shadow-2xl sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl font-bold text-gradient">Zavuno</h1>
-              <p className="text-sm text-green-100">
-                Empowering Farmers, Changing Lives.
-              </p>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                <span className="text-white font-black text-xl">Z</span>
+              </div>
+              <div>
+                <h1 className="zavuno-brand">ZAVUNO</h1>
+                <p className="zavuno-tagline">
+                  🌾 Empowering Farmers, Changing Lives.
+                </p>
+              </div>
             </div>
-            <nav className="hidden md:flex space-x-6">
+            <nav className="hidden md:flex space-x-2">
               <button
                 onClick={() => setActiveSection("home")}
-                className={`px-4 py-2 rounded-lg transition ${
+                className={`nav-btn ${
                   activeSection === "home"
-                    ? "bg-green-600 text-white"
-                    : "text-green-100 hover:bg-green-700"
+                    ? "nav-btn-active"
+                    : "nav-btn-inactive"
                 }`}
               >
-                Home
+                🏠 Home
               </button>
               <button
                 onClick={() => setActiveSection("signin")}
-                className={`px-4 py-2 rounded-lg transition ${
+                className={`nav-btn ${
                   activeSection === "signin"
-                    ? "bg-green-600 text-white"
-                    : "text-green-100 hover:bg-green-700"
+                    ? "nav-btn-active"
+                    : "nav-btn-inactive"
                 }`}
               >
-                Sign In
+                🔐 Sign In
               </button>
               <button
                 onClick={() => setActiveSection("marketplace")}
-                className={`px-4 py-2 rounded-lg transition ${
+                className={`nav-btn ${
                   activeSection === "marketplace"
-                    ? "bg-green-600 text-white"
-                    : "text-green-100 hover:bg-green-700"
+                    ? "nav-btn-active"
+                    : "nav-btn-inactive"
                 }`}
               >
-                Marketplace
+                🛒 Marketplace
               </button>
               <button
                 onClick={() => setActiveSection("weather")}
-                className={`px-4 py-2 rounded-lg transition ${
+                className={`nav-btn ${
                   activeSection === "weather"
-                    ? "bg-green-600 text-white"
-                    : "text-green-100 hover:bg-green-700"
+                    ? "nav-btn-active"
+                    : "nav-btn-inactive"
                 }`}
               >
-                Weather
+                ☀️ Weather
               </button>
               <button
                 onClick={() => setActiveSection("ai")}
-                className={`px-4 py-2 rounded-lg transition ${
-                  activeSection === "ai"
-                    ? "bg-green-600 text-white"
-                    : "text-green-100 hover:bg-green-700"
+                className={`nav-btn ${
+                  activeSection === "ai" ? "nav-btn-active" : "nav-btn-inactive"
                 }`}
               >
-                AI Advice
+                🤖 AI Advice
               </button>
               <button
                 onClick={() => setActiveSection("payments")}
-                className={`px-4 py-2 rounded-lg transition ${
+                className={`nav-btn ${
                   activeSection === "payments"
-                    ? "bg-green-600 text-white"
-                    : "text-green-100 hover:bg-green-700"
+                    ? "nav-btn-active"
+                    : "nav-btn-inactive"
                 }`}
               >
-                Payments
+                💳 Payments
               </button>
               <button
                 onClick={() => setActiveSection("email")}
-                className={`px-4 py-2 rounded-lg transition ${
+                className={`nav-btn ${
                   activeSection === "email"
-                    ? "bg-green-600 text-white"
-                    : "text-green-100 hover:bg-green-700"
+                    ? "nav-btn-active"
+                    : "nav-btn-inactive"
                 }`}
               >
-                Email
+                ✉️ Email
               </button>
               <button
                 onClick={() => setActiveSection("sms")}
-                className={`px-4 py-2 rounded-lg transition ${
+                className={`nav-btn ${
                   activeSection === "sms"
-                    ? "bg-green-600 text-white"
-                    : "text-green-100 hover:bg-green-700"
+                    ? "nav-btn-active"
+                    : "nav-btn-inactive"
                 }`}
               >
-                SMS
+                💬 SMS
               </button>
               <button
                 onClick={() => setActiveSection("chat")}
-                className={`px-4 py-2 rounded-lg transition ${
+                className={`nav-btn ${
                   activeSection === "chat"
-                    ? "bg-green-600 text-white"
-                    : "text-green-100 hover:bg-green-700"
+                    ? "nav-btn-active"
+                    : "nav-btn-inactive"
                 }`}
               >
-                Chat
+                💭 Chat
               </button>
               <button
                 onClick={() => setActiveSection("qrcode")}
-                className={`px-4 py-2 rounded-lg transition ${
+                className={`nav-btn ${
                   activeSection === "qrcode"
-                    ? "bg-green-600 text-white"
-                    : "text-green-100 hover:bg-green-700"
+                    ? "nav-btn-active"
+                    : "nav-btn-inactive"
                 }`}
               >
-                QR Code
+                📱 QR
               </button>
             </nav>
             {/* Mobile menu button */}
@@ -443,7 +446,7 @@ export default function ZavunoPlatform() {
               <select
                 value={activeSection}
                 onChange={(e) => setActiveSection(e.target.value)}
-                className="bg-green-700 text-white px-3 py-2 rounded-lg border border-green-600"
+                className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-3 py-2 rounded-lg border-2 border-amber-400 font-semibold shadow-lg"
               >
                 <option value="home">Home</option>
                 <option value="signin">Sign In</option>
@@ -473,27 +476,27 @@ export default function ZavunoPlatform() {
           <div className="absolute inset-0 bg-black/60"></div>
 
           <div className="relative max-w-7xl mx-auto px-6 text-white">
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight max-w-4xl">
-              Africa's Trusted Agricultural Marketplace
+            <h1 className="zavuno-hero leading-tight max-w-4xl">
+              🌾 Africa's Trusted Agricultural Marketplace
             </h1>
 
-            <p className="mt-6 text-lg max-w-2xl text-gray-200 leading-8">
-              Zavuno connects farmers, buyers, transporters, and investors
+            <p className="mt-6 text-xl max-w-2xl text-cyan-50 leading-8 font-semibold">
+              ✨ Zavuno connects farmers, buyers, transporters, and investors
               through trusted technology and mobile money.
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <div className="mt-10 flex flex-col sm:flex-row gap-6">
               <button
                 onClick={() => setActiveSection("signin")}
-                className="btn-primary"
+                className="btn-primary text-lg"
               >
-                Get Started
+                🚀 Get Started
               </button>
               <button
                 onClick={() => setActiveSection("marketplace")}
-                className="bg-white text-green-800 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold text-lg transition"
+                className="bg-white/95 text-teal-700 hover:bg-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg"
               >
-                Explore Marketplace
+                🛍️ Explore Marketplace
               </button>
             </div>
           </div>
@@ -502,16 +505,16 @@ export default function ZavunoPlatform() {
 
       {/* Sign In Section */}
       {activeSection === "signin" && (
-        <section className="bg-white py-20">
+        <section className="bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 py-20">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-4xl font-bold text-center text-green-800">
-              Sign Into Zavuno
+            <h2 className="section-title text-center text-4xl md:text-5xl">
+              🔐 Sign Into ZAVUNO
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8 mt-14">
-              <div className="bg-green-50 rounded-3xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-green-700">
-                  Farmer Sign In
+              <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-3xl p-8 shadow-xl border-2 border-teal-200 hover:shadow-2xl transition">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                  👨‍🌾 Farmer
                 </h3>
 
                 <input
@@ -532,15 +535,15 @@ export default function ZavunoPlatform() {
 
                 <button
                   onClick={handleFarmerSignIn}
-                  className="w-full mt-6 bg-green-700 text-white py-4 rounded-xl font-semibold hover:bg-green-800 transition"
+                  className="w-full mt-6 bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-bold hover:from-teal-700 hover:to-cyan-700 transition shadow-lg"
                 >
-                  Sign In as Farmer
+                  🌾 Sign In as Farmer
                 </button>
               </div>
 
-              <div className="bg-white rounded-3xl p-8 shadow-lg border">
-                <h3 className="text-2xl font-bold text-green-700">
-                  Buyer Sign In
+              <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 shadow-xl border-2 border-amber-200 hover:shadow-2xl transition">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                  🛍️ Buyer
                 </h3>
 
                 <input
@@ -561,15 +564,15 @@ export default function ZavunoPlatform() {
 
                 <button
                   onClick={handleBuyerSignIn}
-                  className="w-full mt-6 bg-green-800 text-white py-4 rounded-xl font-semibold hover:bg-green-900 transition"
+                  className="w-full mt-6 bg-gradient-to-r from-amber-600 to-orange-600 text-white py-4 rounded-xl font-bold hover:from-amber-700 hover:to-orange-700 transition shadow-lg"
                 >
-                  Sign In as Buyer
+                  💳 Sign In as Buyer
                 </button>
               </div>
 
-              <div className="bg-cyan-50 rounded-3xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-cyan-700">
-                  Transporter Sign In
+              <div className="bg-gradient-to-br from-rose-50 to-pink-50 rounded-3xl p-8 shadow-xl border-2 border-rose-200 hover:shadow-2xl transition">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
+                  🚚 Transporter
                 </h3>
 
                 <input
@@ -577,7 +580,7 @@ export default function ZavunoPlatform() {
                   placeholder="Transporter Email"
                   value={transporterEmail}
                   onChange={(e) => setTransporterEmail(e.target.value)}
-                  className="w-full mt-6 p-4 rounded-xl border"
+                  className="w-full mt-6 p-4 rounded-xl border border-rose-200"
                 />
 
                 <input
@@ -585,14 +588,14 @@ export default function ZavunoPlatform() {
                   placeholder="Password"
                   value={transporterPassword}
                   onChange={(e) => setTransporterPassword(e.target.value)}
-                  className="w-full mt-4 p-4 rounded-xl border"
+                  className="w-full mt-4 p-4 rounded-xl border border-rose-200"
                 />
 
                 <button
                   onClick={handleTransporterSignIn}
-                  className="w-full mt-6 bg-cyan-700 text-white py-4 rounded-xl font-semibold hover:bg-cyan-800 transition"
+                  className="w-full mt-6 bg-gradient-to-r from-rose-600 to-pink-600 text-white py-4 rounded-xl font-bold hover:from-rose-700 hover:to-pink-700 transition shadow-lg"
                 >
-                  Sign In as Transporter
+                  🚚 Sign In as Transporter
                 </button>
               </div>
             </div>
@@ -602,19 +605,19 @@ export default function ZavunoPlatform() {
 
       {/* Marketplace Section */}
       {activeSection === "marketplace" && (
-        <section className="py-20 bg-yellow-50">
+        <section className="py-20 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-4xl font-bold text-center text-yellow-800 mb-4">
-              🥬 Farmer's Marketplace - Sell Your Produce
+            <h2 className="section-title text-center text-4xl md:text-5xl mb-4">
+              🥬 ZAVUNO Marketplace - Sell Your Produce
             </h2>
-            <p className="text-center text-gray-600 mb-12 text-lg">
-              Upload your fresh produce and connect directly with buyers across
-              Africa
+            <p className="text-center text-gray-600 mb-12 text-lg font-semibold">
+              ✨ Upload your fresh produce and connect directly with buyers
+              across Africa
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <div className="bg-white rounded-3xl p-10 shadow-lg">
-                <h3 className="text-2xl font-bold text-yellow-700 mb-6">
+              <div className="bg-white rounded-3xl p-10 shadow-xl border-2 border-green-200 hover:shadow-2xl transition">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-6">
                   📤 Upload Your Produce
                 </h3>
 
