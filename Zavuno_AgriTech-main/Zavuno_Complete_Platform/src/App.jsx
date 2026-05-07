@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import Chart from "react-apexcharts";
 
 export default function ZavunoPlatform() {
   const [activeSection, setActiveSection] = useState("home");
@@ -27,8 +28,11 @@ export default function ZavunoPlatform() {
   const [emailSubject, setEmailSubject] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
   const [emailRecipient, setEmailRecipient] = useState("");
+  const [transporterEmail, setTransporterEmail] = useState("");
+  const [emailLoading, setEmailLoading] = useState(false);
   const [smsPhone, setSmsPhone] = useState("");
   const [smsMessage, setSmsMessage] = useState("");
+  const [smsLoading, setSmsLoading] = useState(false);
   const [chatMessages, setChatMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const [qrCodeUrl, setQrCodeUrl] = useState("");
@@ -36,6 +40,66 @@ export default function ZavunoPlatform() {
   const smsBackendUrl =
     import.meta.env.VITE_SMS_BACKEND_URL || "http://localhost:4000";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const marketLinks = [
+    {
+      label: "Tulaa Farm Marketplace",
+      href: "https://tulaa.io",
+    },
+    {
+      label: "Regional Wholesale Hub Network",
+      href: "https://trademap.org",
+    },
+    {
+      label: "Price Verification Portal",
+      href: "https://www.fao.org",
+    },
+  ];
+
+  const loanLinks = [
+    {
+      label: "FarmDrive Agri Credit",
+      href: "https://farmdrive.co.ke",
+    },
+    {
+      label: "KCB Farming Loans",
+      href: "https://ke.kcbgroup.com",
+    },
+    {
+      label: "Heifer International Financing",
+      href: "https://www.heifer.org",
+    },
+  ];
+
+  const supportOrganizationLinks = [
+    {
+      label: "FAO Farmer Support",
+      href: "https://www.fao.org",
+    },
+    {
+      label: "IFAD Smallholder Support",
+      href: "https://www.ifad.org",
+    },
+    {
+      label: "Heifer International",
+      href: "https://www.heifer.org",
+    },
+  ];
+
+  const governmentSupportLinks = [
+    {
+      label: "Uganda Ministry of Agriculture",
+      href: "https://www.agriculture.go.ug",
+    },
+    {
+      label: "National Agricultural Advisory Services",
+      href: "https://www.naads.go.ug",
+    },
+    {
+      label: "Agricultural Finance Support",
+      href: "https://www.agriculture.go.ug",
+    },
+  ];
 
   const handleFarmerSignIn = () => {
     alert(`Farmer Sign In - Email: ${farmerEmail}`);
@@ -109,6 +173,63 @@ export default function ZavunoPlatform() {
 
     setAiAdvice(advice);
   };
+
+  const marketChartOptions = {
+    chart: {
+      id: "market-price-trends",
+      toolbar: {
+        show: false,
+      },
+      zoom: {
+        enabled: false,
+      },
+    },
+    xaxis: {
+      categories: ["Maize", "Beans", "Tomatoes", "Coffee", "Rice"],
+      labels: {
+        style: {
+          colors: ["#065f46", "#065f46", "#065f46", "#065f46", "#065f46"],
+        },
+      },
+    },
+    stroke: {
+      curve: "smooth",
+      width: 3,
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    fill: {
+      type: "gradient",
+      gradient: {
+        shade: "light",
+        type: "vertical",
+        shadeIntensity: 0.5,
+        gradientToColors: ["#a7f3d0"],
+        opacityFrom: 0.9,
+        opacityTo: 0.3,
+        stops: [0, 100],
+      },
+    },
+    yaxis: {
+      labels: {
+        formatter: (val) => `UGX ${Math.round(val)}`,
+      },
+    },
+    tooltip: {
+      theme: "dark",
+      y: {
+        formatter: (val) => `UGX ${Math.round(val)}`,
+      },
+    },
+  };
+
+  const marketChartSeries = [
+    {
+      name: "Average Market Price",
+      data: [850, 760, 980, 1230, 680],
+    },
+  ];
 
   const handleUploadProduce = () => {
     if (!produceName.trim() || !produceQuantity || !producePrice) {
@@ -390,6 +511,16 @@ export default function ZavunoPlatform() {
                 🤖 AI
               </button>
               <button
+                onClick={() => setActiveSection("government")}
+                className={`nav-btn nav-card ${
+                  activeSection === "government"
+                    ? "nav-btn-active"
+                    : "nav-btn-inactive"
+                }`}
+              >
+                🏛️ Government
+              </button>
+              <button
                 onClick={() => setActiveSection("payments")}
                 className={`nav-btn nav-card ${
                   activeSection === "payments"
@@ -531,6 +662,15 @@ export default function ZavunoPlatform() {
                   className="mobile-menu-item"
                 >
                   💭 Chat
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection("government");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="mobile-menu-item"
+                >
+                  🏛️ Government
                 </button>
                 <button
                   onClick={() => {
@@ -750,6 +890,22 @@ export default function ZavunoPlatform() {
               across Africa
             </p>
 
+            <div className="bg-white rounded-3xl p-8 shadow-xl border border-green-200 mb-10">
+              <h3 className="text-3xl font-bold text-green-800 mb-6">
+                📈 Market Price Trends
+              </h3>
+              <p className="text-gray-700 mb-6">
+                Stay informed with recent price movement across key crops so you
+                can choose the right time to sell.
+              </p>
+              <Chart
+                options={marketChartOptions}
+                series={marketChartSeries}
+                type="area"
+                height={320}
+              />
+            </div>
+
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               <div className="bg-white rounded-3xl p-10 shadow-xl border-2 border-green-200 hover:shadow-2xl transition">
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-6">
@@ -950,6 +1106,85 @@ export default function ZavunoPlatform() {
                     development initiatives, and public sector farmer support
                     networks.
                   </p>
+                </div>
+              </div>
+
+              <div className="mt-10 grid lg:grid-cols-2 gap-6">
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    🔗 Market Link Resources
+                  </h4>
+                  <ul className="space-y-3 text-gray-700">
+                    {marketLinks.map((link) => (
+                      <li key={link.href}>
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-teal-700 font-semibold hover:text-teal-900"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    💳 Loan & Credit Resources
+                  </h4>
+                  <ul className="space-y-3 text-gray-700">
+                    {loanLinks.map((link) => (
+                      <li key={link.href}>
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-amber-700 font-semibold hover:text-amber-900"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    🏛️ Support Organizations
+                  </h4>
+                  <ul className="space-y-3 text-gray-700">
+                    {supportOrganizationLinks.map((link) => (
+                      <li key={link.href}>
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-blue-700 font-semibold hover:text-blue-900"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    🏢 Government Support Links
+                  </h4>
+                  <ul className="space-y-3 text-gray-700">
+                    {governmentSupportLinks.map((link) => (
+                      <li key={link.href}>
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-purple-700 font-semibold hover:text-purple-900"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
 
@@ -1628,6 +1863,68 @@ export default function ZavunoPlatform() {
                   Send
                 </button>
               </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Government Support Section */}
+      {activeSection === "government" && (
+        <section className="py-20 bg-gradient-to-br from-slate-50 via-cyan-50 to-teal-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="section-title text-4xl md:text-5xl font-bold text-slate-900">
+                🏛️ Government Support for Farmers
+              </h2>
+              <p className="text-gray-600 mt-4 text-lg max-w-3xl mx-auto">
+                Explore public programs, subsidies, advisory services and direct
+                support for smallholder farmers across agriculture, livestock,
+                agro-processing and market access.
+              </p>
+            </div>
+
+            <div className="grid gap-8 lg:grid-cols-3">
+              {governmentSupportLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-3xl bg-white p-8 shadow-xl border border-slate-200 hover:shadow-2xl transition"
+                >
+                  <h3 className="text-xl font-bold text-slate-900 mb-3">
+                    {link.label}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Visit the official page for program details, eligibility
+                    information, and application support.
+                  </p>
+                </a>
+              ))}
+            </div>
+
+            <div className="mt-12 rounded-3xl bg-gradient-to-r from-cyan-600 to-teal-700 p-10 text-white shadow-2xl">
+              <h3 className="text-2xl font-bold mb-4">
+                How Zavuno helps you access government support
+              </h3>
+              <ul className="list-disc pl-5 space-y-3 text-sm leading-relaxed">
+                <li>
+                  Connect with ministry programs that fund farm inputs, training
+                  and equipment.
+                </li>
+                <li>
+                  Get guidance on loan guarantees, crop insurance, and rural
+                  community grants.
+                </li>
+                <li>
+                  Find help for adopting climate-smart agriculture and modern
+                  farm technology.
+                </li>
+                <li>
+                  Learn how to join cooperatives, farmer groups, and
+                  public-private market linkages.
+                </li>
+              </ul>
             </div>
           </div>
         </section>
