@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function ZavunoPlatform() {
   const [activeSection, setActiveSection] = useState("home");
@@ -25,11 +26,13 @@ export default function ZavunoPlatform() {
   // New states for additional features
   const [emailSubject, setEmailSubject] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
+  const [emailRecipient, setEmailRecipient] = useState("");
   const [smsPhone, setSmsPhone] = useState("");
   const [smsMessage, setSmsMessage] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const [qrCodeUrl, setQrCodeUrl] = useState("");
+  const [smsQueue, setSmsQueue] = useState([]);
 
   const handleFarmerSignIn = () => {
     alert(`Farmer Sign In - Email: ${farmerEmail}`);
@@ -131,27 +134,144 @@ export default function ZavunoPlatform() {
     alert("✅ Your produce has been listed successfully!");
   };
 
-  // New functions for additional features
-  const handleSendEmail = () => {
-    if (!emailSubject.trim() || !emailMessage.trim()) {
-      alert("Please fill in both subject and message");
-      return;
+  // Function to send queued SMS
+  const sendQueuedSMS = async (queue) => {
+    for (const sms of queue) {
+      try {
+        const response = await fetch(
+          `https://api.twilio.com/2010-04-01/Accounts/${import.meta.env.VITE_TWILIO_ACCOUNT_SID}/Messages.json`,
+          {
+            method: "POST",
+            headers: {
+              Authorization:
+                "Basic " +
+                btoa(
+                  `${import.meta.env.VITE_TWILIO_ACCOUNT_SID}:${import.meta.env.VITE_TWILIO_AUTH_TOKEN}`,
+                ),
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+              To: sms.phone,
+              From: import.meta.env.VITE_TWILIO_PHONE_NUMBER,
+              Body: sms.message,
+            }),
+          },
+        );
+
+        if (response.ok) {
+          console.log(`Queued SMS sent to ${sms.phone}`);
+        }
+      } catch (error) {
+        console.error("Failed to send queued SMS:", error);
+      }
     }
-    // Simulate email sending
-    alert(`Email sent! Subject: ${emailSubject}`);
-    setEmailSubject("");
-    setEmailMessage("");
+    // Clear queue after attempting to send
+    setSmsQueue([]);
+    localStorage.removeItem("smsQueue");
   };
 
-  const handleSendSMS = () => {
+  // New functions for additional features
+  const handleSendEmail = async () => {
+    if (
+      !emailRecipient.trim() ||
+      !emailSubject.trim() ||
+      !emailMessage.trim()
+    ) {
+      alert("Please fill in recipient, subject and message");
+      return;
+    }
+
+    setEmailLoading(true);
+    try {
+      const templateParams = {
+        to_email: emailRecipient,
+        subject: emailSubject,
+        message: emailMessage,
+        from_name: "Zavuno Platform",
+      };
+
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+      );
+
+      alert("Email sent successfully!");
+      setEmailRecipient("");
+      setEmailSubject("");
+      setEmailMessage("");
+    } catch (error) {
+      console.error("Email sending failed:", error);
+      alert("Failed to send email. Please try again.");
+    } finally {
+      setEmailLoading(false);
+    }
+  };
+
+  const handleSendSMS = async () => {
     if (!smsPhone.trim() || !smsMessage.trim()) {
       alert("Please fill in both phone number and message");
       return;
     }
-    // Simulate SMS sending
-    alert(`SMS sent to ${smsPhone}!`);
-    setSmsPhone("");
-    setSmsMessage("");
+
+    const smsData = {
+      phone: smsPhone,
+      message: smsMessage,
+      timestamp: new Date().toISOString(),
+    };
+
+    if (!navigator.onLine) {
+      // Queue SMS for when online
+      const updatedQueue = [...smsQueue, smsData];
+      setSmsQueue(updatedQueue);
+      localStorage.setItem("smsQueue", JSON.stringify(updatedQueue));
+      alert("SMS queued for sending when online!");
+      setSmsPhone("");
+      setSmsMessage("");
+      return;
+    }
+
+    setSmsLoading(true);
+    try {
+      const response = await fetch(
+        `https://api.twilio.com/2010-04-01/Accounts/${import.meta.env.VITE_TWILIO_ACCOUNT_SID}/Messages.json`,
+        {
+          method: "POST",
+          headers: {
+            Authorization:
+              "Basic " +
+              btoa(
+                `${import.meta.env.VITE_TWILIO_ACCOUNT_SID}:${import.meta.env.VITE_TWILIO_AUTH_TOKEN}`,
+              ),
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
+            To: smsPhone,
+            From: import.meta.env.VITE_TWILIO_PHONE_NUMBER,
+            Body: smsMessage,
+          }),
+        },
+      );
+
+      if (response.ok) {
+        alert("SMS sent successfully!");
+        setSmsPhone("");
+        setSmsMessage("");
+      } else {
+        throw new Error("SMS sending failed");
+      }
+    } catch (error) {
+      console.error("SMS sending failed:", error);
+      // Queue for retry
+      const updatedQueue = [...smsQueue, smsData];
+      setSmsQueue(updatedQueue);
+      localStorage.setItem("smsQueue", JSON.stringify(updatedQueue));
+      alert("SMS queued for retry. Will send when connection is restored.");
+      setSmsPhone("");
+      setSmsMessage("");
+    } finally {
+      setSmsLoading(false);
+    }
   };
 
   const handleSendChatMessage = () => {
@@ -183,6 +303,30 @@ export default function ZavunoPlatform() {
     setQrCodeUrl(
       `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(websiteUrl)}`,
     );
+
+    // Initialize EmailJS
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+
+    // Load queued SMS from localStorage
+    const savedQueue = localStorage.getItem("smsQueue");
+    if (savedQueue) {
+      setSmsQueue(JSON.parse(savedQueue));
+    }
+
+    // Set up online/offline event listeners
+    const handleOnline = () => {
+      // Send queued SMS when coming back online
+      const savedQueue = localStorage.getItem("smsQueue");
+      if (savedQueue) {
+        const queue = JSON.parse(savedQueue);
+        if (queue.length > 0) {
+          sendQueuedSMS(queue);
+        }
+      }
+    };
+
+    window.addEventListener("online", handleOnline);
+    return () => window.removeEventListener("online", handleOnline);
   }, []);
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
@@ -829,6 +973,14 @@ export default function ZavunoPlatform() {
 
             <div className="max-w-2xl mx-auto bg-white rounded-3xl p-10 shadow-lg">
               <input
+                type="email"
+                placeholder="Recipient Email"
+                value={emailRecipient}
+                onChange={(e) => setEmailRecipient(e.target.value)}
+                className="w-full p-4 rounded-xl border-2 border-purple-300 mb-4"
+              />
+
+              <input
                 type="text"
                 placeholder="Subject"
                 value={emailSubject}
@@ -846,9 +998,10 @@ export default function ZavunoPlatform() {
 
               <button
                 onClick={handleSendEmail}
-                className="w-full bg-purple-600 text-white py-4 rounded-xl font-semibold hover:bg-purple-700 transition"
+                disabled={emailLoading}
+                className="w-full bg-purple-600 text-white py-4 rounded-xl font-semibold hover:bg-purple-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Email
+                {emailLoading ? "Sending..." : "Send Email"}
               </button>
             </div>
           </div>
@@ -867,6 +1020,17 @@ export default function ZavunoPlatform() {
             </p>
 
             <div className="max-w-2xl mx-auto bg-white rounded-3xl p-10 shadow-lg">
+              {smsQueue.length > 0 && (
+                <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <h4 className="font-semibold text-yellow-800 mb-2">
+                    Queued SMS ({smsQueue.length})
+                  </h4>
+                  <p className="text-sm text-yellow-700">
+                    These messages will be sent when you're back online.
+                  </p>
+                </div>
+              )}
+
               <input
                 type="tel"
                 placeholder="Phone Number (e.g., +256790206354)"
@@ -886,9 +1050,10 @@ export default function ZavunoPlatform() {
 
               <button
                 onClick={handleSendSMS}
-                className="w-full bg-indigo-600 text-white py-4 rounded-xl font-semibold hover:bg-indigo-700 transition"
+                disabled={smsLoading}
+                className="w-full bg-indigo-600 text-white py-4 rounded-xl font-semibold hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send SMS
+                {smsLoading ? "Sending..." : "Send SMS"}
               </button>
             </div>
           </div>

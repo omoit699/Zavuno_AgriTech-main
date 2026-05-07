@@ -1,5 +1,67 @@
 # Zavuno AgriTech - Empowering Farmers, Changing Lives
 
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/omoit699/Zavuno_AgriTech-main.git
+cd Zavuno_AgriTech-main/Zavuno_Complete_Platform
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Set up environment variables
+
+```bash
+cp .env.example .env
+```
+
+4. Configure your API keys in `.env`:
+   - **EmailJS**: Sign up at [emailjs.com](https://www.emailjs.com/) and get your service ID, template ID, and public key
+   - **Twilio SMS**: Sign up at [twilio.com](https://www.twilio.com/) and get your Account SID, Auth Token, and phone number
+
+5. Start the development server
+
+```bash
+npm run dev
+```
+
+6. Build for production
+
+```bash
+npm run build
+npm run deploy
+```
+
+## 📧 Email Integration Setup
+
+1. Go to [EmailJS](https://www.emailjs.com/) and create an account
+2. Create a new email service (Gmail, Outlook, etc.)
+3. Create an email template with variables: `{{to_email}}`, `{{subject}}`, `{{message}}`, `{{from_name}}`
+4. Copy your Service ID, Template ID, and Public Key to `.env`
+
+## 📱 SMS Integration Setup
+
+1. Go to [Twilio](https://www.twilio.com/) and create an account
+2. Get a phone number for SMS sending
+3. Copy your Account SID, Auth Token, and Phone Number to `.env`
+
+**⚠️ Security Note**: For production, move API keys to a backend server to avoid exposing them in frontend code.
+
+---
+
 ## 🌾 Our Vision
 
 Zavuno is more than just a platform—it's a movement to transform African agriculture. We believe in the dignity of every farmer and the potential within every community. Through modern technology combined with timeless values, we're building a marketplace where farmers thrive.
