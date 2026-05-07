@@ -32,13 +32,19 @@ cp .env.example .env
    - **EmailJS**: Sign up at [emailjs.com](https://www.emailjs.com/) and get your service ID, template ID, and public key
    - **Twilio SMS**: Sign up at [twilio.com](https://www.twilio.com/) and get your Account SID, Auth Token, and phone number
 
-5. Start the development server
+5. Start the SMS backend server
+
+```bash
+npm run backend
+```
+
+6. Start the frontend development server
 
 ```bash
 npm run dev
 ```
 
-6. Build for production
+7. Build for production
 
 ```bash
 npm run build

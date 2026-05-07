@@ -9,14 +9,19 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "backend": "node sms-server.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.3",
+    "express": "^4.18.4",
     "qrcode": "^1.5.4",
     "react": "^18.2.0",
     "react-chat-widget": "^3.1.4",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "twilio": "^4.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.2.0",

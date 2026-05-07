@@ -33,6 +33,8 @@ export default function ZavunoPlatform() {
   const [chatInput, setChatInput] = useState("");
   const [qrCodeUrl, setQrCodeUrl] = useState("");
   const [smsQueue, setSmsQueue] = useState([]);
+  const [emailLoading, setEmailLoading] = useState(false);
+  const [smsLoading, setSmsLoading] = useState(false);
 
   const handleFarmerSignIn = () => {
     alert(`Farmer Sign In - Email: ${farmerEmail}`);
@@ -134,40 +136,42 @@ export default function ZavunoPlatform() {
     alert("✅ Your produce has been listed successfully!");
   };
 
-  // Function to send queued SMS
+  // Function to send queued SMS through the backend
   const sendQueuedSMS = async (queue) => {
+    const remaining = [];
+
     for (const sms of queue) {
       try {
-        const response = await fetch(
-          `https://api.twilio.com/2010-04-01/Accounts/${import.meta.env.VITE_TWILIO_ACCOUNT_SID}/Messages.json`,
-          {
-            method: "POST",
-            headers: {
-              Authorization:
-                "Basic " +
-                btoa(
-                  `${import.meta.env.VITE_TWILIO_ACCOUNT_SID}:${import.meta.env.VITE_TWILIO_AUTH_TOKEN}`,
-                ),
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: new URLSearchParams({
-              To: sms.phone,
-              From: import.meta.env.VITE_TWILIO_PHONE_NUMBER,
-              Body: sms.message,
-            }),
+        const response = await fetch("/api/send-sms", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        );
+          body: JSON.stringify({
+            to: sms.phone,
+            body: sms.message,
+          }),
+        });
 
-        if (response.ok) {
-          console.log(`Queued SMS sent to ${sms.phone}`);
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || "Queued SMS failed");
         }
+
+        console.log(`Queued SMS sent to ${sms.phone}`);
       } catch (error) {
         console.error("Failed to send queued SMS:", error);
+        remaining.push(sms);
       }
     }
-    // Clear queue after attempting to send
-    setSmsQueue([]);
-    localStorage.removeItem("smsQueue");
+
+    if (remaining.length > 0) {
+      setSmsQueue(remaining);
+      localStorage.setItem("smsQueue", JSON.stringify(remaining));
+    } else {
+      setSmsQueue([]);
+      localStorage.removeItem("smsQueue");
+    }
   };
 
   // New functions for additional features
@@ -233,36 +237,27 @@ export default function ZavunoPlatform() {
 
     setSmsLoading(true);
     try {
-      const response = await fetch(
-        `https://api.twilio.com/2010-04-01/Accounts/${import.meta.env.VITE_TWILIO_ACCOUNT_SID}/Messages.json`,
-        {
-          method: "POST",
-          headers: {
-            Authorization:
-              "Basic " +
-              btoa(
-                `${import.meta.env.VITE_TWILIO_ACCOUNT_SID}:${import.meta.env.VITE_TWILIO_AUTH_TOKEN}`,
-              ),
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: new URLSearchParams({
-            To: smsPhone,
-            From: import.meta.env.VITE_TWILIO_PHONE_NUMBER,
-            Body: smsMessage,
-          }),
+      const response = await fetch("/api/send-sms", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          to: smsPhone,
+          body: smsMessage,
+        }),
+      });
 
-      if (response.ok) {
-        alert("SMS sent successfully!");
-        setSmsPhone("");
-        setSmsMessage("");
-      } else {
-        throw new Error("SMS sending failed");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "SMS sending failed");
       }
+
+      alert("SMS sent successfully!");
+      setSmsPhone("");
+      setSmsMessage("");
     } catch (error) {
       console.error("SMS sending failed:", error);
-      // Queue for retry
       const updatedQueue = [...smsQueue, smsData];
       setSmsQueue(updatedQueue);
       localStorage.setItem("smsQueue", JSON.stringify(updatedQueue));
