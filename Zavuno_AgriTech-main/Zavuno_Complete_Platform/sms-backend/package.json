@@ -1,0 +1,14 @@
+{
+  "name": "zavuno-sms-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.3",
+    "express": "^4.18.4",
+    "twilio": "^4.0.0"
+  }
+}

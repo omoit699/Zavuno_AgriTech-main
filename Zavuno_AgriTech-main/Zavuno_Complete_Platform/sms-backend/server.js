@@ -15,13 +15,13 @@ const fromNumber = process.env.TWILIO_PHONE_NUMBER;
 
 if (!accountSid || !authToken || !fromNumber) {
   console.warn(
-    "Twilio configuration is missing. Set TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, and TWILIO_PHONE_NUMBER in .env.",
+    "Missing Twilio configuration. Set TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, and TWILIO_PHONE_NUMBER in sms-backend/.env.",
   );
 }
 
 const client = twilio(accountSid, authToken);
 
-app.post("/api/send-sms", async (req, res) => {
+app.post("/send-sms", async (req, res) => {
   const { to, body } = req.body;
 
   if (!to || !body) {
@@ -40,7 +40,6 @@ app.post("/api/send-sms", async (req, res) => {
       from: fromNumber,
       body,
     });
-
     return res.json({ sid: message.sid, status: message.status });
   } catch (error) {
     console.error("Twilio SMS error:", error);

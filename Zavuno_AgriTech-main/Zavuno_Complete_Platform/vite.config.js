@@ -5,12 +5,4 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/Zavuno_AgriTech-main/",
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:4000",
-        changeOrigin: true,
-      },
-    },
-  },
 });

@@ -33,6 +33,8 @@ export default function ZavunoPlatform() {
   const [chatInput, setChatInput] = useState("");
   const [qrCodeUrl, setQrCodeUrl] = useState("");
   const [smsQueue, setSmsQueue] = useState([]);
+  const smsBackendUrl =
+    import.meta.env.VITE_SMS_BACKEND_URL || "http://localhost:4000";
   const [emailLoading, setEmailLoading] = useState(false);
   const [smsLoading, setSmsLoading] = useState(false);
 
@@ -142,7 +144,7 @@ export default function ZavunoPlatform() {
 
     for (const sms of queue) {
       try {
-        const response = await fetch("/api/send-sms", {
+        const response = await fetch(`${smsBackendUrl}/send-sms`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -237,7 +239,7 @@ export default function ZavunoPlatform() {
 
     setSmsLoading(true);
     try {
-      const response = await fetch("/api/send-sms", {
+      const response = await fetch(`${smsBackendUrl}/send-sms`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

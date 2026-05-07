@@ -30,21 +30,30 @@ cp .env.example .env
 
 4. Configure your API keys in `.env`:
    - **EmailJS**: Sign up at [emailjs.com](https://www.emailjs.com/) and get your service ID, template ID, and public key
-   - **Twilio SMS**: Sign up at [twilio.com](https://www.twilio.com/) and get your Account SID, Auth Token, and phone number
 
-5. Start the SMS backend server
+5. Set the SMS backend URL in `.env`:
+   - `VITE_SMS_BACKEND_URL=http://localhost:4000`
+
+6. Configure the SMS backend separately:
+   - Copy `sms-backend/.env.example` to `sms-backend/.env`
+   - Fill in `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILIO_PHONE_NUMBER`
+
+7. Start the SMS backend server
 
 ```bash
-npm run backend
+cd sms-backend
+npm install
+npm start
 ```
 
-6. Start the frontend development server
+8. Start the frontend development server
 
 ```bash
+cd ..
 npm run dev
 ```
 
-7. Build for production
+9. Build for production
 
 ```bash
 npm run build
