@@ -35,8 +35,7 @@ export default function ZavunoPlatform() {
   const [smsQueue, setSmsQueue] = useState([]);
   const smsBackendUrl =
     import.meta.env.VITE_SMS_BACKEND_URL || "http://localhost:4000";
-  const [emailLoading, setEmailLoading] = useState(false);
-  const [smsLoading, setSmsLoading] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleFarmerSignIn = () => {
     alert(`Farmer Sign In - Email: ${farmerEmail}`);
@@ -441,24 +440,108 @@ export default function ZavunoPlatform() {
                 📱 QR
               </button>
             </nav>
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <select
-                value={activeSection}
-                onChange={(e) => setActiveSection(e.target.value)}
-                className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-3 py-2 rounded-lg border-2 border-amber-400 font-semibold shadow-lg"
+            {/* Mobile Hamburger Menu */}
+            <div className="md:hidden relative">
+              <div
+                className={`hamburger-menu ${isMobileMenuOpen ? "open" : ""}`}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                <option value="home">Home</option>
-                <option value="signin">Sign In</option>
-                <option value="marketplace">Marketplace</option>
-                <option value="weather">Weather</option>
-                <option value="ai">AI Advice</option>
-                <option value="payments">Payments</option>
-                <option value="email">Email</option>
-                <option value="sms">SMS</option>
-                <option value="chat">Chat</option>
-                <option value="qrcode">QR Code</option>
-              </select>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
+                <button
+                  onClick={() => {
+                    setActiveSection("home");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="mobile-menu-item"
+                >
+                  🏠 Home
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection("signin");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="mobile-menu-item"
+                >
+                  🔐 Sign In
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection("marketplace");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="mobile-menu-item"
+                >
+                  🛒 Marketplace
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection("weather");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="mobile-menu-item"
+                >
+                  ☀️ Weather
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection("ai");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="mobile-menu-item"
+                >
+                  🤖 AI Advice
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection("payments");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="mobile-menu-item"
+                >
+                  💳 Payments
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection("email");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="mobile-menu-item"
+                >
+                  ✉️ Email
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection("sms");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="mobile-menu-item"
+                >
+                  💬 SMS
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection("chat");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="mobile-menu-item"
+                >
+                  💭 Chat
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection("qrcode");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="mobile-menu-item"
+                >
+                  📱 QR
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -517,7 +600,14 @@ export default function ZavunoPlatform() {
 
             <div className="grid md:grid-cols-3 gap-8 mt-14">
               <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-3xl p-8 shadow-xl border-2 border-teal-200 hover:shadow-2xl transition">
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                <div className="text-center mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop"
+                    alt="Farmer portrait"
+                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-teal-200"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent text-center">
                   👨‍🌾 Farmer
                 </h3>
 
@@ -546,7 +636,14 @@ export default function ZavunoPlatform() {
               </div>
 
               <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 shadow-xl border-2 border-amber-200 hover:shadow-2xl transition">
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                <div className="text-center mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop"
+                    alt="Buyer shopping"
+                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-amber-200"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent text-center">
                   🛍️ Buyer
                 </h3>
 
@@ -575,7 +672,14 @@ export default function ZavunoPlatform() {
               </div>
 
               <div className="bg-gradient-to-br from-rose-50 to-pink-50 rounded-3xl p-8 shadow-xl border-2 border-rose-200 hover:shadow-2xl transition">
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
+                <div className="text-center mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop"
+                    alt="Delivery truck"
+                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-rose-200"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent text-center">
                   🚚 Transporter
                 </h3>
 
@@ -673,45 +777,97 @@ export default function ZavunoPlatform() {
               </div>
 
               <div className="bg-gradient-to-br from-yellow-100 to-orange-100 rounded-3xl p-10 shadow-lg">
-                <h3 className="text-2xl font-bold text-orange-800 mb-4">
+                <div className="text-center mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=400&auto=format&fit=crop"
+                    alt="Fresh produce market"
+                    className="w-32 h-32 rounded-2xl mx-auto mb-4 object-cover border-4 border-orange-200 shadow-lg"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-orange-800 mb-4 text-center">
                   💡 Why Sell on Zavuno?
                 </h3>
-                <div className="space-y-3 text-gray-800">
-                  <p className="flex items-start">
-                    <span className="text-2xl mr-3">✓</span>
-                    <span>
-                      <strong>Direct Buyer Access:</strong> Connect with serious
-                      buyers without middlemen
-                    </span>
-                  </p>
-                  <p className="flex items-start">
-                    <span className="text-2xl mr-3">✓</span>
-                    <span>
-                      <strong>Fair Prices:</strong> You control the price of
-                      your produce
-                    </span>
-                  </p>
-                  <p className="flex items-start">
-                    <span className="text-2xl mr-3">✓</span>
-                    <span>
-                      <strong>Instant Reach:</strong> Farmers, businesses, and
-                      restaurants find your products
-                    </span>
-                  </p>
-                  <p className="flex items-start">
-                    <span className="text-2xl mr-3">✓</span>
-                    <span>
-                      <strong>Safe Payments:</strong> Mobile money payments with
-                      protection
-                    </span>
-                  </p>
-                  <p className="flex items-start">
-                    <span className="text-2xl mr-3">✓</span>
-                    <span>
-                      <strong>Transportation:</strong> Easy access to trusted
-                      transporters
-                    </span>
-                  </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-start p-4 bg-white/50 rounded-xl">
+                    <img
+                      src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=200&auto=format&fit=crop"
+                      alt="Direct connection"
+                      className="w-12 h-12 rounded-lg mr-3 object-cover"
+                    />
+                    <div>
+                      <span className="text-2xl mr-2 accent-icon">✓</span>
+                      <span className="font-semibold text-orange-800">
+                        Direct Buyer Access:
+                      </span>
+                      <p className="text-gray-700 text-sm mt-1">
+                        Connect with serious buyers without middlemen
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start p-4 bg-white/50 rounded-xl">
+                    <img
+                      src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=200&auto=format&fit=crop"
+                      alt="Fair pricing"
+                      className="w-12 h-12 rounded-lg mr-3 object-cover"
+                    />
+                    <div>
+                      <span className="text-2xl mr-2 accent-icon">✓</span>
+                      <span className="font-semibold text-orange-800">
+                        Fair Prices:
+                      </span>
+                      <p className="text-gray-700 text-sm mt-1">
+                        You control the price of your produce
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start p-4 bg-white/50 rounded-xl">
+                    <img
+                      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=200&auto=format&fit=crop"
+                      alt="Instant reach"
+                      className="w-12 h-12 rounded-lg mr-3 object-cover"
+                    />
+                    <div>
+                      <span className="text-2xl mr-2 accent-icon">✓</span>
+                      <span className="font-semibold text-orange-800">
+                        Instant Reach:
+                      </span>
+                      <p className="text-gray-700 text-sm mt-1">
+                        Farmers, businesses, and restaurants find your products
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start p-4 bg-white/50 rounded-xl">
+                    <img
+                      src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=200&auto=format&fit=crop"
+                      alt="Safe payments"
+                      className="w-12 h-12 rounded-lg mr-3 object-cover"
+                    />
+                    <div>
+                      <span className="text-2xl mr-2 accent-icon">✓</span>
+                      <span className="font-semibold text-orange-800">
+                        Safe Payments:
+                      </span>
+                      <p className="text-gray-700 text-sm mt-1">
+                        Mobile money payments with protection
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start p-4 bg-white/50 rounded-xl md:col-span-2">
+                    <img
+                      src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=200&auto=format&fit=crop"
+                      alt="Transportation"
+                      className="w-12 h-12 rounded-lg mr-3 object-cover"
+                    />
+                    <div>
+                      <span className="text-2xl mr-2 accent-icon">✓</span>
+                      <span className="font-semibold text-orange-800">
+                        Transportation:
+                      </span>
+                      <p className="text-gray-700 text-sm mt-1">
+                        Easy access to trusted transporters
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -896,8 +1052,15 @@ export default function ZavunoPlatform() {
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-emerald-200 hover:shadow-2xl transition transform hover:scale-105">
-                <div className="text-6xl mb-4">🌱</div>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-4">
+                <div className="text-center mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=400&auto=format&fit=crop"
+                    alt="Seeds being planted"
+                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-200"
+                  />
+                </div>
+                <div className="text-6xl mb-4 text-center">🌱</div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-4 text-center">
                   Believe in Your Seeds
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
@@ -909,8 +1072,15 @@ export default function ZavunoPlatform() {
               </div>
 
               <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-teal-200 hover:shadow-2xl transition transform hover:scale-105">
-                <div className="text-6xl mb-4">🌅</div>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-4">
+                <div className="text-center mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=400&auto=format&fit=crop"
+                    alt="Beautiful sunrise over fields"
+                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-teal-200"
+                  />
+                </div>
+                <div className="text-6xl mb-4 text-center">🌅</div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-4 text-center">
                   Dawn Brings New Hope
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
@@ -922,8 +1092,15 @@ export default function ZavunoPlatform() {
               </div>
 
               <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-green-200 hover:shadow-2xl transition transform hover:scale-105">
-                <div className="text-6xl mb-4">🌾</div>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
+                <div className="text-center mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=400&auto=format&fit=crop"
+                    alt="Golden wheat harvest"
+                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-green-200"
+                  />
+                </div>
+                <div className="text-6xl mb-4 text-center">🌾</div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4 text-center">
                   Harvest Your Dreams
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
@@ -962,56 +1139,91 @@ export default function ZavunoPlatform() {
 
       {/* Weather Section */}
       {activeSection === "weather" && (
-        <section className="py-20 bg-blue-50">
+        <section className="py-20 bg-gradient-to-br from-sky-50 via-blue-50 to-indigo-50">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-4xl font-bold text-blue-800 mb-4">
-              🌤️ Weather Forecast for Farming
-            </h2>
-            <p className="text-gray-600 mb-8">
-              Check weather conditions in your region to plan your farming
-              activities
-            </p>
+            <div className="text-center mb-12">
+              <img
+                src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=400&auto=format&fit=crop"
+                alt="Weather forecasting"
+                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-blue-200 shadow-lg"
+              />
+              <h2 className="section-title text-center text-4xl md:text-5xl mb-4">
+                ☀️ Weather Intelligence for Farmers
+              </h2>
+              <p className="text-center text-gray-700 text-lg font-semibold">
+                ✨ Plan your farming activities with accurate weather forecasts
+                and smart recommendations
+              </p>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-3xl p-10 shadow-lg">
+              <div className="text-block">
+                <div className="text-center mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1446776877081-d282a0f896e2?q=80&w=400&auto=format&fit=crop"
+                    alt="Weather map"
+                    className="w-24 h-24 rounded-xl mx-auto mb-4 object-cover border-4 border-blue-200"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-6 text-center">
+                  🌤️ Get Weather Forecast
+                </h3>
                 <input
                   type="text"
                   placeholder="Enter your location (e.g., Kampala, Jinja)"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  className="w-full p-4 rounded-xl border-2 border-blue-300"
+                  className="w-full p-4 rounded-xl border-2 border-blue-300 mb-4"
                 />
-
                 <button
                   onClick={handleGetWeather}
-                  className="w-full mt-6 bg-blue-600 text-white py-4 rounded-xl font-semibold hover:bg-blue-700 transition"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-xl font-bold hover:from-blue-700 hover:to-indigo-700 transition shadow-lg"
                 >
-                  Get Weather
+                  🌦️ Get Weather Update
                 </button>
               </div>
 
               {weatherData && (
-                <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl p-8 shadow-lg text-white">
-                  <h3 className="text-2xl font-bold mb-4">
-                    📍 {weatherData.location}
+                <div className="text-block">
+                  <div className="text-center mb-6">
+                    <img
+                      src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=400&auto=format&fit=crop"
+                      alt="Weather data visualization"
+                      className="w-24 h-24 rounded-xl mx-auto mb-4 object-cover border-4 border-green-200"
+                    />
+                  </div>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-6 text-center">
+                    📍 {weatherData.location} Weather Report
                   </h3>
-                  <div className="space-y-3">
-                    <p className="text-lg">
-                      <span className="font-semibold">Temperature:</span>{" "}
-                      {weatherData.temperature}°C
-                    </p>
-                    <p className="text-lg">
-                      <span className="font-semibold">Condition:</span>{" "}
-                      {weatherData.condition}
-                    </p>
-                    <p className="text-lg">
-                      <span className="font-semibold">Humidity:</span>{" "}
-                      {weatherData.humidity}%
-                    </p>
-                    <p className="text-lg">
-                      <span className="font-semibold">Expected Rainfall:</span>{" "}
-                      {weatherData.rainfall}mm
-                    </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-blue-50 p-4 rounded-xl text-center">
+                      <div className="text-3xl mb-2">🌡️</div>
+                      <p className="text-sm text-gray-600">Temperature</p>
+                      <p className="text-xl font-bold text-blue-700">
+                        {weatherData.temperature}°C
+                      </p>
+                    </div>
+                    <div className="bg-yellow-50 p-4 rounded-xl text-center">
+                      <div className="text-3xl mb-2">☁️</div>
+                      <p className="text-sm text-gray-600">Condition</p>
+                      <p className="text-xl font-bold text-yellow-700">
+                        {weatherData.condition}
+                      </p>
+                    </div>
+                    <div className="bg-green-50 p-4 rounded-xl text-center">
+                      <div className="text-3xl mb-2">💧</div>
+                      <p className="text-sm text-gray-600">Humidity</p>
+                      <p className="text-xl font-bold text-green-700">
+                        {weatherData.humidity}%
+                      </p>
+                    </div>
+                    <div className="bg-purple-50 p-4 rounded-xl text-center">
+                      <div className="text-3xl mb-2">🌧️</div>
+                      <p className="text-sm text-gray-600">Rainfall</p>
+                      <p className="text-xl font-bold text-purple-700">
+                        {weatherData.rainfall}mm
+                      </p>
+                    </div>
                   </div>
                 </div>
               )}
@@ -1022,39 +1234,66 @@ export default function ZavunoPlatform() {
 
       {/* AI Advice Section */}
       {activeSection === "ai" && (
-        <section className="py-20 bg-gradient-to-r from-amber-50 to-orange-50">
+        <section className="py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-4xl font-bold text-orange-800 mb-4">
-              🤖 AI Agricultural Advice
-            </h2>
-            <p className="text-gray-600 mb-8">
-              Get expert AI-powered recommendations for your crops. Ask about
-              maize, beans, cassava, banana, tomato, and more!
-            </p>
+            <div className="text-center mb-12">
+              <img
+                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=400&auto=format&fit=crop"
+                alt="AI agricultural technology"
+                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-orange-200 shadow-lg"
+              />
+              <h2 className="section-title text-center text-4xl md:text-5xl mb-4">
+                🤖 AI Agricultural Intelligence
+              </h2>
+              <p className="text-center text-gray-700 text-lg font-semibold">
+                ✨ Get expert AI-powered recommendations for your crops and
+                farming practices
+              </p>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-3xl p-10 shadow-lg">
+              <div className="text-block">
+                <div className="text-center mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop"
+                    alt="Smart farming technology"
+                    className="w-24 h-24 rounded-xl mx-auto mb-4 object-cover border-4 border-orange-200"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-6 text-center">
+                  🌱 Ask the AI Expert
+                </h3>
                 <textarea
                   placeholder="Ask your agricultural question... e.g., 'How do I grow maize?' or 'Best practices for tomatoes?'"
                   value={aiQuery}
                   onChange={(e) => setAiQuery(e.target.value)}
-                  className="w-full p-4 rounded-xl border-2 border-orange-300 h-32 resize-none"
+                  className="w-full p-4 rounded-xl border-2 border-orange-300 h-32 resize-none mb-4"
                 />
-
                 <button
                   onClick={handleGetAiAdvice}
-                  className="w-full mt-6 bg-orange-600 text-white py-4 rounded-xl font-semibold hover:bg-orange-700 transition"
+                  className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white py-4 rounded-xl font-bold hover:from-orange-700 hover:to-red-700 transition shadow-lg"
                 >
-                  Get AI Advice
+                  🚀 Get AI Advice
                 </button>
               </div>
 
               {aiAdvice && (
-                <div className="bg-gradient-to-br from-orange-400 to-amber-600 rounded-3xl p-8 shadow-lg text-white">
-                  <h3 className="text-2xl font-bold mb-4">
+                <div className="text-block">
+                  <div className="text-center mb-6">
+                    <img
+                      src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=400&auto=format&fit=crop"
+                      alt="Data analysis and insights"
+                      className="w-24 h-24 rounded-xl mx-auto mb-4 object-cover border-4 border-green-200"
+                    />
+                  </div>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-6 text-center">
                     💡 Expert Recommendation
                   </h3>
-                  <p className="text-lg leading-relaxed">{aiAdvice}</p>
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border-2 border-green-200">
+                    <p className="text-lg leading-relaxed text-gray-800">
+                      {aiAdvice}
+                    </p>
+                  </div>
                 </div>
               )}
             </div>
