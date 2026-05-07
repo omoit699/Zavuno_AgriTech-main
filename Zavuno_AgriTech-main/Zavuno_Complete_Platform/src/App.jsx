@@ -899,6 +899,143 @@ export default function ZavunoPlatform() {
               </div>
             </div>
 
+            <div className="mt-12 grid gap-8">
+              <h3 className="text-3xl font-bold text-slate-900 mb-6 text-center">
+                🌱 Zavuno Support Ecosystem for Farmers
+              </h3>
+              <div className="grid lg:grid-cols-3 gap-6">
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    🔗 Market Linkage & Platform Access
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Zavuno links you to trusted marketplaces, buyers,
+                    transporters, agro-input platforms, and organized buyer
+                    networks so you can sell without losing value to middlemen.
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Access national and regional trade channels, export buyers,
+                    wholesale hubs, and price-verified market platforms from one
+                    place.
+                  </p>
+                </div>
+
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    💰 Agro Loans & Support Organizations
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Find links to agricultural credit programs, harvest loans,
+                    crop insurance, and organizations that support agri-business
+                    growth.
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Zavuno helps you connect with farmer-friendly finance,
+                    cooperative groups, local extension services, and NGOs that
+                    back smallholder farmers.
+                  </p>
+                </div>
+
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    🌾 Government Programs & Agricultural Agencies
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Use Zavuno to discover government programs designed to help
+                    farmers access training, subsidies, equipment, and market
+                    support.
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Connect with agricultural ministry programs, rural
+                    development initiatives, and public sector farmer support
+                    networks.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid lg:grid-cols-3 gap-6">
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    🐝 Beekeeping, Poultry, Pigery & Rabbit Keeping
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Diversify your farm income with beekeeping, poultry, pig
+                    farming, or rabbit keeping. These farm enterprises can bring
+                    extra cash, improve resilience, and make the farm more
+                    sustainable.
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Zavuno encourages farmers to adopt high-value livestock and
+                    apiary practices that fit smallholder plots and local
+                    demand.
+                  </p>
+                </div>
+
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    🧪 Agrochemicals & Seed Company Partnerships
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Use verified agrochemical suppliers and seed companies that
+                    deliver trusted inputs, improved seeds, and safer crop
+                    protection.
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Zavuno provides connections to companies that support
+                    healthy crops and reliable seed varieties for better
+                    harvests.
+                  </p>
+                </div>
+
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    🩺 Crop & Animal Disease Alerts
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Receive automated disease updates for both crops and
+                    livestock so you can act quickly to protect your farm.
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Zavuno keeps you informed about pest outbreaks, animal
+                    health warnings, and treatment guidance for healthier farms.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-6 items-start">
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    💼 Smart Finance Advice for Farmers
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Manage your farm income carefully: save a portion of each
+                    sale, budget for inputs, track production costs, and avoid
+                    debt traps.
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Zavuno helps farmers treat their farm as a business, plan
+                    for harvest cycles, and build financial resilience for every
+                    season.
+                  </p>
+                </div>
+
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    👥 Farmer Group Chat & Community Chart
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Join the Zavuno community and communicate with fellow
+                    farmers, share market insights, compare prices, and
+                    coordinate support.
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Use the group communication feature to remain connected and
+                    learn from others across the region.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {produceListings.length > 0 && (
               <div className="mt-12">
                 <h3 className="text-3xl font-bold text-yellow-800 mb-8">
