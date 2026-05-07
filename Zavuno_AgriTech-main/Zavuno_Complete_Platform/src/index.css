@@ -61,16 +61,27 @@ body {
   font-size: 18pt;
   font-weight: 400;
   padding: 12px 20px;
-  border-radius: 12px;
+  border-radius: 16px;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 72px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.nav-card {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.24);
 }
 
 .nav-btn-active {
   background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #1f2937;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.25);
 }
 
 .nav-btn-inactive {

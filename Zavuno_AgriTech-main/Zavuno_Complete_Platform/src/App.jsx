@@ -340,10 +340,10 @@ export default function ZavunoPlatform() {
                 </p>
               </div>
             </div>
-            <nav className="hidden md:flex space-x-2">
+            <nav className="hidden md:grid grid-cols-2 xl:grid-cols-5 gap-3">
               <button
                 onClick={() => setActiveSection("home")}
-                className={`nav-btn ${
+                className={`nav-btn nav-card ${
                   activeSection === "home"
                     ? "nav-btn-active"
                     : "nav-btn-inactive"
@@ -353,7 +353,7 @@ export default function ZavunoPlatform() {
               </button>
               <button
                 onClick={() => setActiveSection("signin")}
-                className={`nav-btn ${
+                className={`nav-btn nav-card ${
                   activeSection === "signin"
                     ? "nav-btn-active"
                     : "nav-btn-inactive"
@@ -363,7 +363,7 @@ export default function ZavunoPlatform() {
               </button>
               <button
                 onClick={() => setActiveSection("marketplace")}
-                className={`nav-btn ${
+                className={`nav-btn nav-card ${
                   activeSection === "marketplace"
                     ? "nav-btn-active"
                     : "nav-btn-inactive"
@@ -373,7 +373,7 @@ export default function ZavunoPlatform() {
               </button>
               <button
                 onClick={() => setActiveSection("weather")}
-                className={`nav-btn ${
+                className={`nav-btn nav-card ${
                   activeSection === "weather"
                     ? "nav-btn-active"
                     : "nav-btn-inactive"
@@ -383,15 +383,15 @@ export default function ZavunoPlatform() {
               </button>
               <button
                 onClick={() => setActiveSection("ai")}
-                className={`nav-btn ${
+                className={`nav-btn nav-card ${
                   activeSection === "ai" ? "nav-btn-active" : "nav-btn-inactive"
                 }`}
               >
-                🤖 AI Advice
+                🤖 AI
               </button>
               <button
                 onClick={() => setActiveSection("payments")}
-                className={`nav-btn ${
+                className={`nav-btn nav-card ${
                   activeSection === "payments"
                     ? "nav-btn-active"
                     : "nav-btn-inactive"
@@ -401,7 +401,7 @@ export default function ZavunoPlatform() {
               </button>
               <button
                 onClick={() => setActiveSection("email")}
-                className={`nav-btn ${
+                className={`nav-btn nav-card ${
                   activeSection === "email"
                     ? "nav-btn-active"
                     : "nav-btn-inactive"
@@ -411,7 +411,7 @@ export default function ZavunoPlatform() {
               </button>
               <button
                 onClick={() => setActiveSection("sms")}
-                className={`nav-btn ${
+                className={`nav-btn nav-card ${
                   activeSection === "sms"
                     ? "nav-btn-active"
                     : "nav-btn-inactive"
@@ -421,7 +421,7 @@ export default function ZavunoPlatform() {
               </button>
               <button
                 onClick={() => setActiveSection("chat")}
-                className={`nav-btn ${
+                className={`nav-btn nav-card ${
                   activeSection === "chat"
                     ? "nav-btn-active"
                     : "nav-btn-inactive"
@@ -431,7 +431,7 @@ export default function ZavunoPlatform() {
               </button>
               <button
                 onClick={() => setActiveSection("qrcode")}
-                className={`nav-btn ${
+                className={`nav-btn nav-card ${
                   activeSection === "qrcode"
                     ? "nav-btn-active"
                     : "nav-btn-inactive"
@@ -564,26 +564,53 @@ export default function ZavunoPlatform() {
             </h1>
 
             <p className="mt-6 text-xl max-w-2xl text-cyan-50 leading-8 font-semibold">
-              ✨ Zavuno connects farmers, buyers, transporters, and investors
-              through trusted technology and mobile money.
+              ✨ Zavuno was born from the heart of the farm, built for the
+              farmer who has been cheated by middlemen, squeezed by unfair price
+              rules, and intimidated by officials.
             </p>
             <p className="mt-4 text-lg max-w-2xl text-amber-200 leading-7 font-medium italic">
-              "Your faith in the soil today will yield abundant blessings
-              tomorrow. Keep believing, keep planting, keep dreaming."
+              "We created Zavuno so every farmer can sell directly, keep the
+              value of their harvest, and trust a transparent price update
+              system that works for them — not against them."
             </p>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              <div className="text-block p-6 bg-white/90 border border-white/60 shadow-xl rounded-3xl">
+                <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                  Why Zavuno Matters
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Too many farmers lose the wealth of their harvest to middlemen
+                  who take the best margin, and to enforcement officers who make
+                  the market feel unsafe. Zavuno is a safe, trusted home where
+                  you keep more of what you earn.
+                </p>
+              </div>
+
+              <div className="text-block p-6 bg-white/90 border border-white/60 shadow-xl rounded-3xl">
+                <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                  Automated Price Updates
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Every produce category receives live price updates so you can
+                  make confident selling decisions. No more guessing, no more
+                  unfair offers — just real-time market clarity for every crop.
+                </p>
+              </div>
+            </div>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-6">
               <button
                 onClick={() => setActiveSection("signin")}
                 className="btn-primary text-lg"
               >
-                🚀 Get Started
+                🚀 Join Zavuno Today
               </button>
               <button
                 onClick={() => setActiveSection("marketplace")}
                 className="bg-white/95 text-teal-700 hover:bg-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg"
               >
-                🛍️ Explore Marketplace
+                🛍️ See Live Prices
               </button>
             </div>
           </div>
