@@ -989,6 +989,22 @@ export default function ZavunoPlatform() {
 
                 <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
                   <h4 className="text-2xl font-bold text-slate-900 mb-4">
+                    ⚙️ Modern Farm Technology Companies
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Discover companies offering modern agricultural tools at
+                    friendly terms — solar irrigation kits, precision planters,
+                    mobile farm management systems, and sensor-driven crop care.
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Zavuno helps farmers access affordable technology partners
+                    so they can grow smarter, reduce waste, and increase
+                    profits.
+                  </p>
+                </div>
+
+                <div className="text-block p-8 bg-white/95 border border-slate-200 rounded-3xl shadow-xl">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">
                     🩺 Crop & Animal Disease Alerts
                   </h4>
                   <p className="text-gray-700 leading-relaxed mb-4">
