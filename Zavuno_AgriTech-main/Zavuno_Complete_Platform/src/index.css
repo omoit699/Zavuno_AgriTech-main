@@ -1,4 +1,23 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles for Zavuno */
+.gradient-bg {
+  background: linear-gradient(135deg, #4caf50, #2196f3, #ff9800);
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105;
+}
+
+.card-shadow {
+  @apply shadow-xl hover:shadow-2xl transition-shadow duration-300;
+}
+
+.text-gradient {
+  background: linear-gradient(45deg, #4caf50, #2196f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

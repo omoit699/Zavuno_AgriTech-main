@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function ZavunoPlatform() {
   const [activeSection, setActiveSection] = useState("home");
@@ -6,7 +6,6 @@ export default function ZavunoPlatform() {
   const [farmerPassword, setFarmerPassword] = useState("");
   const [buyerEmail, setBuyerEmail] = useState("");
   const [buyerPassword, setBuyerPassword] = useState("");
-  const [transporterEmail, setTransporterEmail] = useState("");
   const [transporterPassword, setTransporterPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [amount, setAmount] = useState("");
@@ -22,6 +21,15 @@ export default function ZavunoPlatform() {
   const [produceDescription, setProduceDescription] = useState("");
   const [produceImage, setProduceImage] = useState("");
   const [produceListings, setProduceListings] = useState([]);
+
+  // New states for additional features
+  const [emailSubject, setEmailSubject] = useState("");
+  const [emailMessage, setEmailMessage] = useState("");
+  const [smsPhone, setSmsPhone] = useState("");
+  const [smsMessage, setSmsMessage] = useState("");
+  const [chatMessages, setChatMessages] = useState([]);
+  const [chatInput, setChatInput] = useState("");
+  const [qrCodeUrl, setQrCodeUrl] = useState("");
 
   const handleFarmerSignIn = () => {
     alert(`Farmer Sign In - Email: ${farmerEmail}`);
@@ -122,13 +130,67 @@ export default function ZavunoPlatform() {
     setProduceImage("");
     alert("✅ Your produce has been listed successfully!");
   };
+
+  // New functions for additional features
+  const handleSendEmail = () => {
+    if (!emailSubject.trim() || !emailMessage.trim()) {
+      alert("Please fill in both subject and message");
+      return;
+    }
+    // Simulate email sending
+    alert(`Email sent! Subject: ${emailSubject}`);
+    setEmailSubject("");
+    setEmailMessage("");
+  };
+
+  const handleSendSMS = () => {
+    if (!smsPhone.trim() || !smsMessage.trim()) {
+      alert("Please fill in both phone number and message");
+      return;
+    }
+    // Simulate SMS sending
+    alert(`SMS sent to ${smsPhone}!`);
+    setSmsPhone("");
+    setSmsMessage("");
+  };
+
+  const handleSendChatMessage = () => {
+    if (!chatInput.trim()) return;
+    const newMessage = {
+      id: Date.now(),
+      text: chatInput,
+      sender: "You",
+      timestamp: new Date().toLocaleTimeString(),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatInput("");
+
+    // Simulate response
+    setTimeout(() => {
+      const response = {
+        id: Date.now() + 1,
+        text: "Thank you for your message! Our team will respond soon.",
+        sender: "Support",
+        timestamp: new Date().toLocaleTimeString(),
+      };
+      setChatMessages((prev) => [...prev, response]);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    // Generate QR code for the website
+    const websiteUrl = window.location.href;
+    setQrCodeUrl(
+      `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(websiteUrl)}`,
+    );
+  }, []);
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
-      <header className="bg-green-800 text-white shadow-lg">
+      <header className="gradient-bg text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold">Zavuno</h1>
+              <h1 className="text-3xl font-bold text-gradient">Zavuno</h1>
               <p className="text-sm text-green-100">
                 Empowering Farmers, Changing Lives.
               </p>
@@ -194,6 +256,46 @@ export default function ZavunoPlatform() {
               >
                 Payments
               </button>
+              <button
+                onClick={() => setActiveSection("email")}
+                className={`px-4 py-2 rounded-lg transition ${
+                  activeSection === "email"
+                    ? "bg-green-600 text-white"
+                    : "text-green-100 hover:bg-green-700"
+                }`}
+              >
+                Email
+              </button>
+              <button
+                onClick={() => setActiveSection("sms")}
+                className={`px-4 py-2 rounded-lg transition ${
+                  activeSection === "sms"
+                    ? "bg-green-600 text-white"
+                    : "text-green-100 hover:bg-green-700"
+                }`}
+              >
+                SMS
+              </button>
+              <button
+                onClick={() => setActiveSection("chat")}
+                className={`px-4 py-2 rounded-lg transition ${
+                  activeSection === "chat"
+                    ? "bg-green-600 text-white"
+                    : "text-green-100 hover:bg-green-700"
+                }`}
+              >
+                Chat
+              </button>
+              <button
+                onClick={() => setActiveSection("qrcode")}
+                className={`px-4 py-2 rounded-lg transition ${
+                  activeSection === "qrcode"
+                    ? "bg-green-600 text-white"
+                    : "text-green-100 hover:bg-green-700"
+                }`}
+              >
+                QR Code
+              </button>
             </nav>
             {/* Mobile menu button */}
             <div className="md:hidden">
@@ -208,6 +310,10 @@ export default function ZavunoPlatform() {
                 <option value="weather">Weather</option>
                 <option value="ai">AI Advice</option>
                 <option value="payments">Payments</option>
+                <option value="email">Email</option>
+                <option value="sms">SMS</option>
+                <option value="chat">Chat</option>
+                <option value="qrcode">QR Code</option>
               </select>
             </div>
           </div>
@@ -238,7 +344,7 @@ export default function ZavunoPlatform() {
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setActiveSection("signin")}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition"
+                className="btn-primary"
               >
                 Get Started
               </button>
@@ -705,6 +811,165 @@ export default function ZavunoPlatform() {
                   <p className="text-lg leading-relaxed">{aiAdvice}</p>
                 </div>
               )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Email Section */}
+      {activeSection === "email" && (
+        <section className="py-20 bg-purple-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-4xl font-bold text-center text-purple-800 mb-4">
+              📧 Email Messaging
+            </h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Send emails to farmers, buyers, and partners
+            </p>
+
+            <div className="max-w-2xl mx-auto bg-white rounded-3xl p-10 shadow-lg">
+              <input
+                type="text"
+                placeholder="Subject"
+                value={emailSubject}
+                onChange={(e) => setEmailSubject(e.target.value)}
+                className="w-full p-4 rounded-xl border-2 border-purple-300 mb-4"
+              />
+
+              <textarea
+                placeholder="Message"
+                value={emailMessage}
+                onChange={(e) => setEmailMessage(e.target.value)}
+                rows="6"
+                className="w-full p-4 rounded-xl border-2 border-purple-300 mb-6"
+              />
+
+              <button
+                onClick={handleSendEmail}
+                className="w-full bg-purple-600 text-white py-4 rounded-xl font-semibold hover:bg-purple-700 transition"
+              >
+                Send Email
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* SMS Section */}
+      {activeSection === "sms" && (
+        <section className="py-20 bg-indigo-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-4xl font-bold text-center text-indigo-800 mb-4">
+              📱 SMS Messaging
+            </h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Send SMS notifications for offline integration
+            </p>
+
+            <div className="max-w-2xl mx-auto bg-white rounded-3xl p-10 shadow-lg">
+              <input
+                type="tel"
+                placeholder="Phone Number (e.g., +256790206354)"
+                value={smsPhone}
+                onChange={(e) => setSmsPhone(e.target.value)}
+                className="w-full p-4 rounded-xl border-2 border-indigo-300 mb-4"
+              />
+
+              <textarea
+                placeholder="SMS Message (max 160 characters)"
+                value={smsMessage}
+                onChange={(e) => setSmsMessage(e.target.value)}
+                rows="4"
+                maxLength="160"
+                className="w-full p-4 rounded-xl border-2 border-indigo-300 mb-6"
+              />
+
+              <button
+                onClick={handleSendSMS}
+                className="w-full bg-indigo-600 text-white py-4 rounded-xl font-semibold hover:bg-indigo-700 transition"
+              >
+                Send SMS
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Chat Section */}
+      {activeSection === "chat" && (
+        <section className="py-20 bg-pink-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-4xl font-bold text-center text-pink-800 mb-4">
+              💬 User Chat
+            </h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Communicate with other users in real-time
+            </p>
+
+            <div className="max-w-4xl mx-auto bg-white rounded-3xl p-10 shadow-lg">
+              <div className="h-96 overflow-y-auto border-2 border-pink-300 rounded-xl p-4 mb-4 bg-gray-50">
+                {chatMessages.map((msg) => (
+                  <div
+                    key={msg.id}
+                    className={`mb-4 ${msg.sender === "You" ? "text-right" : "text-left"}`}
+                  >
+                    <div
+                      className={`inline-block p-3 rounded-lg ${msg.sender === "You" ? "bg-pink-500 text-white" : "bg-gray-200 text-gray-800"}`}
+                    >
+                      <p className="font-semibold">{msg.sender}</p>
+                      <p>{msg.text}</p>
+                      <p className="text-xs opacity-75">{msg.timestamp}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex gap-4">
+                <input
+                  type="text"
+                  placeholder="Type your message..."
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  onKeyPress={(e) =>
+                    e.key === "Enter" && handleSendChatMessage()
+                  }
+                  className="flex-1 p-4 rounded-xl border-2 border-pink-300"
+                />
+                <button
+                  onClick={handleSendChatMessage}
+                  className="bg-pink-600 text-white px-6 py-4 rounded-xl font-semibold hover:bg-pink-700 transition"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* QR Code Section */}
+      {activeSection === "qrcode" && (
+        <section className="py-20 bg-teal-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-4xl font-bold text-center text-teal-800 mb-4">
+              📱 QR Code Access
+            </h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Scan this QR code to easily access the Zavuno platform
+            </p>
+
+            <div className="max-w-md mx-auto bg-white rounded-3xl p-10 shadow-lg text-center">
+              <img
+                src={qrCodeUrl}
+                alt="QR Code for Zavuno Platform"
+                className="mx-auto mb-6 border-4 border-teal-300 rounded-lg"
+              />
+              <p className="text-gray-600 mb-4">
+                Scan with your phone's camera
+              </p>
+              <p className="text-sm text-gray-500">
+                URL: {window.location.href}
+              </p>
             </div>
           </div>
         </section>
