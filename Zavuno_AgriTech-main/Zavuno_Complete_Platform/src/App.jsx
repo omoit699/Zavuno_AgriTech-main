@@ -484,6 +484,10 @@ export default function ZavunoPlatform() {
               ✨ Zavuno connects farmers, buyers, transporters, and investors
               through trusted technology and mobile money.
             </p>
+            <p className="mt-4 text-lg max-w-2xl text-amber-200 leading-7 font-medium italic">
+              "Your faith in the soil today will yield abundant blessings
+              tomorrow. Keep believing, keep planting, keep dreaming."
+            </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-6">
               <button
@@ -761,52 +765,71 @@ export default function ZavunoPlatform() {
 
       {/* Farmers in Action Section - Part of Home */}
       {activeSection === "home" && (
-        <section className="py-20 bg-green-50">
+        <section className="py-20 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-4xl font-bold text-center text-green-800 mb-4">
-              🌾 Farmers in Action
+            <h2 className="section-title text-center text-4xl md:text-5xl mb-4">
+              🌾 Champions of the Soil - Our Farmers
             </h2>
-            <p className="text-center text-gray-600 mb-12 text-lg">
-              Meet our community of hardworking farmers nurturing the land with
-              hope and dedication
+            <p className="text-center text-gray-700 mb-12 text-lg font-semibold">
+              ✨ Meet the heroes who feed our nation. Their faith in the land
+              and hope for tomorrow inspire us all to dream bigger and work
+              harder.
             </p>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+              <div className="rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition transform hover:scale-105 border-2 border-green-200">
                 <img
                   src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=800&auto=format&fit=crop"
                   alt="Farmer in garden with crops"
                   className="w-full h-96 object-cover"
                 />
                 <div className="p-6 bg-white">
-                  <h3 className="text-2xl font-bold text-green-700 mb-2">
-                    ✨ In the Garden
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
+                    ✨ Guardians of Growth
                   </h3>
-                  <p className="text-gray-700">
-                    Our farmers work tirelessly in their gardens, cultivating
-                    healthy crops with modern techniques and traditional wisdom.
-                    Every seed planted is a promise of a better tomorrow.
+                  <p className="text-gray-700 leading-relaxed">
+                    Our farmers are the guardians of growth, blending ancient
+                    wisdom with modern innovation. With unwavering faith, they
+                    nurture each seed, believing in the promise of abundant
+                    harvest. Their dedication today ensures a prosperous
+                    tomorrow for all.
                   </p>
                 </div>
               </div>
 
-              <div className="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+              <div className="rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition transform hover:scale-105 border-2 border-emerald-200">
                 <img
                   src="https://images.unsplash.com/photo-1488459716781-8c63cc00022b?q=80&w=800&auto=format&fit=crop"
                   alt="Farmers selling produce at market"
                   className="w-full h-96 object-cover"
                 />
                 <div className="p-6 bg-white">
-                  <h3 className="text-2xl font-bold text-green-700 mb-2">
-                    💼 Marketplace Success
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-4">
+                    💼 Marketplace Victories
                   </h3>
-                  <p className="text-gray-700">
-                    At our marketplace, farmers proudly sell their fresh,
-                    quality products. Direct connections with buyers ensure fair
-                    prices and sustainable livelihoods for our agricultural
-                    partners.
+                  <p className="text-gray-700 leading-relaxed">
+                    In our marketplace, faith meets opportunity. Farmers proudly
+                    showcase their harvest, connecting directly with buyers who
+                    value their hard work. Each successful sale is a testament
+                    to their perseverance and a step toward the brighter future
+                    they envision.
                   </p>
                 </div>
+              </div>
+            </div>
+
+            <div className="mt-12 bg-gradient-to-r from-green-100 via-emerald-100 to-teal-100 rounded-3xl p-8 shadow-xl border-2 border-green-200">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent mb-4">
+                  🌟 Your Faith is Our Inspiration
+                </h3>
+                <p className="text-lg text-gray-800 leading-relaxed">
+                  To every farmer reading this: your work is sacred. Your faith
+                  in the soil, your hope for better days, your dedication to
+                  feeding your community - these are the qualities that make you
+                  true champions. Keep believing, keep planting, keep dreaming.
+                  Your harvest of blessings is coming.
+                </p>
               </div>
             </div>
           </div>
@@ -853,6 +876,85 @@ export default function ZavunoPlatform() {
               >
                 Pay Now
               </button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Farmer Motivation Section */}
+      {activeSection === "home" && (
+        <section className="py-20 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="section-title text-center text-4xl md:text-5xl mb-4">
+              🌟 Hope & Faith for Farmers
+            </h2>
+            <p className="text-center text-gray-700 mb-12 text-lg font-semibold">
+              ✨ Every seed you plant carries the promise of tomorrow. Your
+              dedication today builds a brighter future for your family and
+              community.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-emerald-200 hover:shadow-2xl transition transform hover:scale-105">
+                <div className="text-6xl mb-4">🌱</div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-4">
+                  Believe in Your Seeds
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Every great harvest begins with faith in a single seed. Your
+                  hard work, patience, and trust in nature's timing will yield
+                  abundant blessings. Remember, even in drought, your faith
+                  keeps hope alive.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-teal-200 hover:shadow-2xl transition transform hover:scale-105">
+                <div className="text-6xl mb-4">🌅</div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-4">
+                  Dawn Brings New Hope
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Each morning brings fresh opportunities. Your dedication to
+                  the land, your commitment to quality, and your vision for a
+                  better future inspire us all. Keep believing - your
+                  breakthrough harvest is coming.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-green-200 hover:shadow-2xl transition transform hover:scale-105">
+                <div className="text-6xl mb-4">🌾</div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
+                  Harvest Your Dreams
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Your dreams of prosperity are as real as the crops you
+                  nurture. With faith, perseverance, and the support of your
+                  community, you will reap the rewards of your labor. A
+                  bountiful future awaits the faithful farmer.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-amber-100 via-orange-100 to-rose-100 rounded-3xl p-10 shadow-xl border-2 border-amber-200">
+              <div className="text-center">
+                <h3 className="text-3xl font-bold bg-gradient-to-r from-amber-600 via-orange-600 to-rose-600 bg-clip-text text-transparent mb-6">
+                  💪 Your Faith Will Be Rewarded
+                </h3>
+                <p className="text-lg text-gray-800 leading-relaxed mb-6">
+                  Dear Farmer, your hands that toil in the soil are shaping
+                  Africa's future. Every challenge you overcome, every crop you
+                  nurture, every life you feed - these are acts of faith that
+                  will yield eternal rewards. Keep believing, keep working, keep
+                  hoping. Your harvest of blessings is on the way.
+                </p>
+                <div className="flex justify-center items-center gap-4 text-4xl">
+                  <span>🙏</span>
+                  <span>🌱</span>
+                  <span>🌟</span>
+                  <span>🌾</span>
+                  <span>✨</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
